@@ -11,7 +11,6 @@ RSpec.describe Operation, type: :model do
     expect(subject).to be_valid
   end 
 
-  end
   it "should validates presence of invoice_num" do
     subject.invoice_num = nil
     expect(subject).to_not be_valid 
@@ -21,6 +20,7 @@ RSpec.describe Operation, type: :model do
     subject.invoice_date = nil
     expect(subject).to_not be_valid 
   end
+  
   it "should validates presence of amount" do
     subject.amount = nil
     expect(subject).to_not be_valid
@@ -28,17 +28,17 @@ RSpec.describe Operation, type: :model do
 
   it "should validates presence of operation_date" do
     subject.amount = nil
-    expect(operation_date).to_not be_valid
+    expect(subject).to_not be_valid
   end
 
   it "should validates presence of kind" do
      subject.kind = nil
-    expect(operation_date).to_not be_valid
+    expect(subject).to_not be_valid
   end
 
   it "should validates presence of status" do
     subject.status = nil
-    expect(operation_date).to_not be_valid
+    expect(subject).to_not be_valid
   end
       
 end
