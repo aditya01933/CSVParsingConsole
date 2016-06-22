@@ -1,0 +1,11 @@
+<%= form_for @operations do |f| %>
+ 	 
+
+  <%= f.file_field :file, :class => "inputfile ", :name => "operation[file]", :id =>"file-1", :required => 'required' %>
+	<label for="file-1">Choose a file…</label>
+
+
+  <%= button_tag(type: 'submit', class: "btn btn-info up-btn") do %>
+  		<i class="ikon ikon-upload-2"></i> Upload
+  <% end %>
+<% end -%>  

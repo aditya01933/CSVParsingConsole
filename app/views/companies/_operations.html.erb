@@ -1,0 +1,9 @@
+<% @company_decorator.operations("#{@filter}").each do |operation| %>
+	
+	<p><%= operation.try(:id)%> | <%= operation.try(:invoice_num)%> | <%= operation.try(:reporter)%> | <%= operation.try(:status)%> 
+		
+			<%= operation.try(:kind) %></p>
+		
+	 </li>
+
+<%end%>

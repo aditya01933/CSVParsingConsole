@@ -1,0 +1,21 @@
+<div id="posts">
+
+
+	<%= form_for @operations do |f| %>
+	 	 
+
+	  <%= f.file_field :file, :required => 'required', class: "upload-form" %>
+	  <%= f.submit "upload file", class: 'btn btn-danger filter-text' %>
+	<% end -%>  
+
+
+	<%= form_tag( '/companies', :method => :get ) do %>
+		<%= text_field_tag :filter, nil, placeholder: "id, reporter, status, invoice_num, kind", class: 'filter-text' %>
+		<%= submit_tag "Filter"%>
+	<% end %>	
+
+	<div class="page">
+	  <%= render @companies %>
+	</div>
+</div>
+<%= paginate @companies %>
