@@ -31,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #For fileupload
 gem 'roo', '~> 2.4.0' 
 
+gem 'websocket-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
