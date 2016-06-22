@@ -40,5 +40,9 @@ RSpec.describe Operation, type: :model do
     subject.status = nil
     expect(subject).to_not be_valid
   end
+
+  context "association" do
+    it { is_expected.to have_many(:categories).through(:category_operations) }
+  end
       
 end
