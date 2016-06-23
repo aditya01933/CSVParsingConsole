@@ -14,7 +14,6 @@ class Operation < ActiveRecord::Base
     category_array.each do |name|
       category = Category.find_or_create_by(name: name) 
       self.categories << category      
-    end
-  	
+    end  	
   end
 end

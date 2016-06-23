@@ -5,10 +5,10 @@ class OperationsController < ApplicationController
 	end
 
 	def create		
-		upload_file = FileUpload.new(file_path: operation_params["file"].path, file_name: operation_params["file"].original_filename )
-		upload_file.parse_operation
 	 	# @job_id = OperationWorker.perform_async(operation_params["file"].path, operation_params["file"].original_filename )	  
-	  redirect_to operations_path	  
+	  upload_file = FileUpload.new(operation_params["file"].path, operation_params["file"].original_filename )
+	    upload_file.parse_operation
+	  redirect_to upload_progress_path	  
 	end
 
 	def operation_csv		
@@ -17,6 +17,10 @@ class OperationsController < ApplicationController
 	    format.html
 	    format.csv { send_data @operations.to_csv }
 	  end
+	end
+
+	def upload_progress
+		
 	end
 
 	private

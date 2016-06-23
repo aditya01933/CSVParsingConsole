@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :job_statuses
 
   get 'operation_csv' => 'operations#operation_csv'
+  get 'upload_progress' => 'operations#upload_progress'
   
   root :to => "companies#index"
   # The priority is based upon order of creation: first created -> highest priority.

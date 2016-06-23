@@ -1,0 +1,15 @@
+<div id = "job_count">
+
+</div>
+
+<script type="text/javascript">
+	$(function(){
+	  
+		var dispatcher = new WebSocketRails('localhost:3000/websocket',false);
+
+		channel = dispatcher.subscribe('updates');
+		channel.bind('update', function(data) {
+		  $('#job_count').text(data);
+		});
+	});
+</script>
