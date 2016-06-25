@@ -1,15 +1,13 @@
-<div id = "job_count">
+<%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/black-tie/jquery-ui.css", type: "text/css" %>
 
-</div>
+
+<div id = "prog"></div>
+Total Rows : <div id="total_rows"></div>
+Successfuly Parsed: <div id="successful_rows"></div>
+Failed: <div id="failed_rows"></div>
 
 <script type="text/javascript">
-	$(function(){
-	  
-		var dispatcher = new WebSocketRails('localhost:3000/websocket',false);
-
-		channel = dispatcher.subscribe('updates');
-		channel.bind('update', function(data) {
-		  $('#job_count').text(data);
-		});
-	});
+	startSocket();
 </script>
+
+  
