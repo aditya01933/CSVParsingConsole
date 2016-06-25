@@ -5,9 +5,8 @@ class OperationsController < ApplicationController
 	end
 
 	def create		
-	 	# @job_id = OperationWorker.perform_async(operation_params["file"].path, operation_params["file"].original_filename )	  
-	  upload_file = FileUpload.new(operation_params["file"].path, operation_params["file"].original_filename )
-	    upload_file.parse_operation
+	 	@job_id = OperationWorker.perform_async(operation_params["file"].path, operation_params["file"].original_filename )	  
+	
 	  redirect_to upload_progress_path	  
 	end
 
