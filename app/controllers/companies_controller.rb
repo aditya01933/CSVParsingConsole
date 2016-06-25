@@ -11,7 +11,7 @@ class CompaniesController < ApplicationController
 
 	def show
 		@company = Company.find(params[:id])
-		@operations = @company.operations.page(params[:page]).per(5)
+		@operations = @company.operations.page(params[:page]).per(10)
 		@company_decorator = CompanyDecorator.new(@company)
 		 respond_to do |format|
 		 	format.js

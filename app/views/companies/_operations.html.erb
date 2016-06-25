@@ -1,10 +1,29 @@
-<% @operations.each do |operation| %>
-	
-	<p><%= operation.try(:id)%> | <%= operation.try(:invoice_num)%> | <%= operation.try(:reporter)%> | <%= operation.try(:status)%> 
-		
-			<%= operation.try(:kind) %></p>
-		
-	 </li>
-
-<%end%>
+<div class="table-responsive">
+<table class="table ">
+	<thead>
+	  <tr>
+	  	<%(Operation.column_names - ["company_id", "created_at", "updated_at"]).each do |head|%>
+		  	<th>
+		  		<%= head%>
+		  	</th>
+	  	<%end%>
+	  </tr>
+	<thead>
+	<tbody> 
+		<% @operations.each do |operation| %>
+		<tr>	
+			<td><%= operation.try(:id)%> </td>
+			<td><%= operation.try(:invoice_num)%></td>
+			<td><%= operation.try(:invoice_date)%></td>
+			<td><%= operation.try(:operation_date)%></td>
+			<td><%= operation.try(:amount)%></td>			
+			<td><%= operation.try(:reporter)%></td>
+			<td><%= operation.try(:notes) %></td>
+			<td><%= operation.try(:status)%></td>				
+			<td><%= operation.try(:kind) %></td>
+		</tr>	 
+		<%end%>
+	</tbody> 	
+</table>	
+</div>
 <%= paginate @operations, :remote => true %>
