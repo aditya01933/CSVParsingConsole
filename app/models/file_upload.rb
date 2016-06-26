@@ -12,7 +12,7 @@ class FileUpload
 
 	def parse_operation
 		spreadsheet = open_csv
-		counter = Counter.new(spreadsheet.last_row)
+		counter = Counter.new(spreadsheet.last_row-1)
 		header = spreadsheet.row(1) 
 		sleep 2  
 		(2..spreadsheet.last_row).map do |i|
