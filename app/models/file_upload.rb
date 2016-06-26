@@ -3,9 +3,10 @@ class FileUpload
 	
 	attr_writer :file_path, :file_name
 
-	def initialize(file_path, file_name)
+	def initialize(file_path, file_name, job_id)
 		@file_path = file_path
 		@file_name = file_name
+		@job_id = job_id
 	end	
 	
 
@@ -27,7 +28,7 @@ class FileUpload
 	  		counter.parsing_failure	  		
 	  	end
 
-	  	WebsocketRails[:updates].trigger(:update, counter.row_count)		
+	  	WebsocketRails[:updates].trigger(:update, counter.row_count(@job_id))		
 		end 
 		# WebsocketRails.users.each do |conn|
 		# 	conn.close!

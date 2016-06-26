@@ -12,10 +12,11 @@ class Counter
 			@failure ||= 0
 			@failure += 1
 		end
-		def row_count
+		def row_count(job_id)
 			{	total_rows: @total_rows,
 				success: @success,
-				failed_row: @failure
+				failed_row: @failure,
+				job_id: job_id
 			}.to_json
 		end
 end
