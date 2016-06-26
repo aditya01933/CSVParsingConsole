@@ -22,6 +22,7 @@ class OperationsController < ApplicationController
 		@job_id = params[:job_id]
 	end
 
+
 	private
 
 	def operation_params

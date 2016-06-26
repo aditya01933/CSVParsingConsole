@@ -10,7 +10,7 @@
 				Accepted Operations: <%= @company_decorator.accepted_operations%>
 		</h4>
 		<%= link_to "CSV", "/operation_csv.csv?company_id=#{company.id}" %>
-		<%= link_to "Operations", company_path(company), remote: true%>
+		<%= link_to "Operations", company_path(company, filter: @filter), remote: true%>
 
 	</div>	
 	
