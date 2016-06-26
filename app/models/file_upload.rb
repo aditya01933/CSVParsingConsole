@@ -12,7 +12,8 @@ class FileUpload
 	def parse_operation
 		spreadsheet = open_csv
 		counter = Counter.new(spreadsheet.last_row)
-		header = spreadsheet.row(1)   
+		header = spreadsheet.row(1) 
+		sleep 2  
 		(2..spreadsheet.last_row).map do |i|
 
 		  row = Hash[[header, spreadsheet.row(i)].transpose]
@@ -37,7 +38,7 @@ class FileUpload
 		operation = Operation.new	
 		operation_attr = row.except("company", nil)
 		operation.attributes = operation_attr
-		company = companies_list.where(name: row["company"].strip).first		 
+		company = companies_list.where(name: row["company"].try(:strip)).first		 
 		if company.nil?
 		  operation
 		else
