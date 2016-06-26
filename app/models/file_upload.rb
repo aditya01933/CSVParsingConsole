@@ -14,7 +14,7 @@ class FileUpload
 		spreadsheet = open_csv
 		counter = Counter.new(spreadsheet.last_row-1)
 		header = spreadsheet.row(1) 
-		sleep 2  
+		sleep 3  
 		(2..spreadsheet.last_row).map do |i|
 
 		  row = Hash[[header, spreadsheet.row(i)].transpose]

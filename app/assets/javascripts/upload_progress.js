@@ -10,6 +10,7 @@ function startSocket(){
 	  var jsonObject = jQuery.parseJSON(data);	
 	  if(job_id == jsonObject.job_id){
 		  parsingProgress(jsonObject);
+		  $('#connection_est').text("Connected").css("color", "green");
 		  $('#total_rows').text(jsonObject.total_rows);
 		  $('#successful_rows').text(jsonObject.success);
 		  $('#failed_rows').text(jsonObject.failed_row);
