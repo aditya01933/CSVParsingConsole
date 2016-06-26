@@ -12,17 +12,23 @@
 	<tbody> 
 		<% @operations.each do |operation| %>
 		<tr>	
-			<td><%= operation.try(:id)%> </td>
-			<td><%= operation.try(:invoice_num)%></td>
-			<td><%= operation.try(:invoice_date)%></td>
-			<td><%= operation.try(:operation_date)%></td>
-			<td><%= operation.try(:amount)%></td>			
-			<td><%= operation.try(:reporter)%></td>
-			<td><%= operation.try(:notes) %></td>
-			<td><%= operation.try(:status)%></td>				
-			<td><%= operation.try(:kind) %></td>
+			<td><%= operation.id%> </td>
+			<td><%= operation.invoice_num%></td>
+			<td><%= operation.invoice_date%></td>
+			<td><%= operation.operation_date%></td>
+			<td><%= operation.amount%></td>			
+			<td><%= operation.reporter%></td>
+			<td><%= operation.notes %></td>
+			<td><%= operation.status%></td>				
+			<td><%= operation.kind %></td>		
 		</tr>	 
 		<%end%>
+		<tr><td>
+			<% if @operations.empty?%>
+				There is no operation in this company for given filter.
+			<%end%>
+		</td></tr>
+
 	</tbody> 	
 </table>	
 </div>

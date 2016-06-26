@@ -4,7 +4,7 @@
 	<div class="panel-heading">
 	<% @company_decorator = CompanyDecorator.new(company)%>
 		<h4><%= company.name %> || 
-				No. of operations:	<%= @company_decorator.number_of_operations %> ||
+				Total operations:	<%= @company_decorator.number_of_operations %> ||
 				Average Amount : <%= @company_decorator.average_of_amount %> ||
 				Highest of Month: <%= @company_decorator.highest_of_month%> ||
 				Accepted Operations: <%= @company_decorator.accepted_operations%>
