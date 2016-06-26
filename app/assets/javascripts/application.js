@@ -12,9 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-
 //= require websocket_rails/main
-//= require jquery-ui
+//= require jquery-ui/progressbar
 //= require_tree .
 
 
