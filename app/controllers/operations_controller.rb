@@ -11,7 +11,12 @@ class OperationsController < ApplicationController
 	end
 
 	def operation_csv		
-		@operations = Operation.where(company_id: params[:company_id] )
+		if params[:filter].present?
+			query = params[:filter].try(:downcase)
+			@operations = Operation.where(company_id: params[:company_id] ).where('lower(status) LIKE :query OR lower(kind) LIKE :query OR lower(invoice_num) LIKE :query OR lower(reporter) LIKE :query', query: "%#{query}%")
+		else
+			@operations = Operation.where(company_id: params[:company_id] )
+		end
 		respond_to do |format|
 	    format.html
 	    format.csv { send_data @operations.to_csv }

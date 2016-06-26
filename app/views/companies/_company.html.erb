@@ -9,7 +9,7 @@
 				Highest of Month: <%= @company_decorator.highest_of_month%> ||
 				Accepted Operations: <%= @company_decorator.accepted_operations%>
 		</h4>
-		<%= link_to "CSV", "/operation_csv.csv?company_id=#{company.id}" %>
+		<%= link_to "CSV", "/operation_csv.csv?company_id=#{company.id}&filter=#{@filter} " %>
 		<%= link_to "Operations", company_path(company, filter: @filter), remote: true%>
 		, Filter:	
 		<%if @filter.present? %>
