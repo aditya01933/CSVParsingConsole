@@ -30,9 +30,7 @@ class FileUpload
 
 	  	WebsocketRails[:updates].trigger(:update, counter.row_count(@job_id))		
 		end 
-		# WebsocketRails.users.each do |conn|
-		# 	conn.close!
-		# end
+
 	end
 
 	def create_operation_for(row)

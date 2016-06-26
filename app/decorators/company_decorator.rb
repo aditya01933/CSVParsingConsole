@@ -21,12 +21,4 @@ class CompanyDecorator
 		@company.operations.where(status: "accepted").count || 0
 	end
 
-  def operations(filter)
-    if filter == "id" || filter == "invoice_num" || filter == "reporter" || filter == "status" || filter == "kind"
-      company.operations.select(filter)
-    else 
-      company.operations
-    end  
-  end
-
 end
