@@ -7,7 +7,7 @@ class OperationsController < ApplicationController
 	def create		
 	 	@job_id = OperationWorker.perform_async(operation_params["file"].path, operation_params["file"].original_filename )	  
 	
-	  redirect_to upload_progress_path	  
+	  redirect_to upload_progress_path(job_id: @job_id)	  
 	end
 
 	def operation_csv		
@@ -19,7 +19,7 @@ class OperationsController < ApplicationController
 	end
 
 	def upload_progress
-		
+		@job_id = params[:job_id]
 	end
 
 	private
