@@ -26,6 +26,9 @@ function startSocket(){
 	            .children('.ui-progressbar-value')
 	            .html(pct.toPrecision(3) + '%')
 	            .css('display', 'block');
+	        if(pct == 100){
+	        	dispatcher.disconnect();
+	        }    
 
 	    
 	}
