@@ -4,10 +4,14 @@ class OperationsController < ApplicationController
 	  @operations = Operation.new	  
 	end
 
-	def create		
-	 	@job_id = OperationWorker.perform_async(operation_params["file"].path, operation_params["file"].original_filename )	  
-	
-	  redirect_to upload_progress_path(job_id: @job_id)	  
+	def create
+		if FileUpload.csv_file? operation_params["file"].original_filename		
+	 		@job_id = OperationWorker.perform_async(operation_params["file"].path, operation_params["file"].original_filename )  
+			redirect_to upload_progress_path(job_id: @job_id)	
+		else
+			flash[:notice] = "unsupported file format"
+			redirect_to companies_path
+		end	  
 	end
 
 	def operation_csv		

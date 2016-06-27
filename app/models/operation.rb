@@ -29,4 +29,6 @@ class Operation < ActiveRecord::Base
 
     end
   end
+
+  
 end

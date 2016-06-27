@@ -51,13 +51,13 @@ class FileUpload
 		@companies || Company.all		
 	end
 
-	def open_csv
-		case File.extname(@file_name)
-		when ".csv" then Roo::CSV.new(@file_path)
-		else raise "Unknown file type: #{@file_name}"
-    end
+	def open_csv		
+		Roo::CSV.new(@file_path)		
   end
 
+  def self.csv_file?(name)
+  	File.extname(name) == ".csv"
+  end
 
 
 end

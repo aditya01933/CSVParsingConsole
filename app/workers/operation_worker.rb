@@ -4,7 +4,11 @@ class OperationWorker
 
 	  def perform(file_path, file_name)	 
 	    upload_file = FileUpload.new(file_path, file_name, jid)
-	    upload_file.parse_operation
+	    begin
+	      upload_file.parse_operation
+	    rescue RuntimeError => e	      
+	      puts e
+	    end
 	  end
 
 end
