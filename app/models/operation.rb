@@ -11,7 +11,6 @@ class Operation < ActiveRecord::Base
   scope :filter, -> (query) { where('lower(status) LIKE :query OR lower(kind) LIKE :query OR lower(invoice_num) LIKE :query OR lower(reporter) LIKE :query', query: "%#{query}%") }
 
   before_save :squish_columns
-  after_initialize :format_date
 
   def create_category
 		category_array = self.kind.downcase.split(";")
@@ -42,12 +41,6 @@ class Operation < ActiveRecord::Base
       end
     end
 
-    def format_date
-      self.date = begin
-                    date.include?('/') ? Date.strptime(date, '%m/%d/%Y') : Date.parse(date)
-                  rescue ArgumentError
-                    nil
-                  end
-    end
+    
 
 end

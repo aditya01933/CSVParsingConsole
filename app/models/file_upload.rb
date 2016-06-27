@@ -35,7 +35,8 @@ class FileUpload
 
 	def create_operation_for(row)
 		operation = Operation.new	
-		operation_attr = row.except("company", nil)
+		operation_attr = row.except("company", "invoice_date", "operation_date", nil)
+		operation.attributes = format_date(row["invoice_date"], row["operation_date"])
 		operation.attributes = operation_attr
 		company = companies_list.where(name: row["company"].try(:squish)).first		 
 		if company.nil?
@@ -57,6 +58,19 @@ class FileUpload
 
   def self.csv_file?(name)
   	File.extname(name) == ".csv"
+  end
+
+  def format_date(invoice_date, operation_date)
+  	date_hash = {invoice_date: invoice_date, operation_date: operation_date}
+    date_hash.each do |key, date|	
+    	begin    
+				new_date = date.to_s.include?('/') ? Date.strptime(date.to_s, '%m/%d/%Y') : Date.parse(date.to_s)	       
+      	date_hash[key] = new_date
+      rescue ArgumentError
+        nil
+      end
+    end  
+    date_hash          
   end
 
 
