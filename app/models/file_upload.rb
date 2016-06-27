@@ -20,7 +20,10 @@ class FileUpload
 		  row = Hash[[header, spreadsheet.row(i)].transpose]
 
 		  operation = create_operation_for row
+		  puts operation.inspect
+		  puts operation.valid?
 		  if operation.valid?
+
 	  		operation.save!
 	  		operation.create_category
 	  		counter.parsing_success	  		
@@ -37,12 +40,14 @@ class FileUpload
 		operation = Operation.new	
 		operation_attr = row.except("company", "invoice_date", "operation_date", nil)
 		operation.attributes = operation_attr
-		operation.attributes = format_date(row["invoice_date"], row["operation_date"])
+		date_attributes = format_date(row["invoice_date"], row["operation_date"])
+		puts operation.inspect
 		company = companies_list.where(name: row["company"].try(:squish)).first		 
+		puts company.inspect
 		if company.nil?
 		  operation
 		else
-		  company.operations.build(operation_attr.merge(company_id: company.id))
+		  company.operations.build(operation_attr.merge(company_id: company.id).merge(date_attributes))
 		end
 	end
 
