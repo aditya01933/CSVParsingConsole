@@ -8,7 +8,7 @@ class Operation < ActiveRecord::Base
   validates_presence_of :invoice_num, :company_id, :invoice_date, :amount, :operation_date, :kind, :status
   validates_numericality_of :amount, greater_than: 0
   validates_uniqueness_of :invoice_num
-
+  scope :filter, -> (query) { where('lower(status) LIKE :query OR lower(kind) LIKE :query OR lower(invoice_num) LIKE :query OR lower(reporter) LIKE :query', query: "%#{query}%") }
 
   def create_category
 		category_array = self.kind.split(";")

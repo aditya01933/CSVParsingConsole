@@ -13,7 +13,7 @@ class OperationsController < ApplicationController
 	def operation_csv		
 		if params[:filter].present?
 			query = params[:filter].try(:downcase)
-			@operations = Operation.where(company_id: params[:company_id] ).where('lower(status) LIKE :query OR lower(kind) LIKE :query OR lower(invoice_num) LIKE :query OR lower(reporter) LIKE :query', query: "%#{query}%")
+			@operations = Operation.where(company_id: params[:company_id] ).filter(query)
 		else
 			@operations = Operation.where(company_id: params[:company_id] )
 		end
