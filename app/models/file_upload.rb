@@ -37,7 +37,7 @@ class FileUpload
 		operation = Operation.new	
 		operation_attr = row.except("company", nil)
 		operation.attributes = operation_attr
-		company = companies_list.where(name: row["company"].try(:strip)).first		 
+		company = companies_list.where(name: row["company"].try(:squish)).first		 
 		if company.nil?
 		  operation
 		else

@@ -10,8 +10,10 @@ class Operation < ActiveRecord::Base
   validates_uniqueness_of :invoice_num
   scope :filter, -> (query) { where('lower(status) LIKE :query OR lower(kind) LIKE :query OR lower(invoice_num) LIKE :query OR lower(reporter) LIKE :query', query: "%#{query}%") }
 
+  before_save :squish_columns
+
   def create_category
-		category_array = self.kind.split(";")
+		category_array = self.kind.downcase.split(";")
     category_array.each do |name|
       category = Category.find_or_create_by(name: name) 
       self.categories << category      
@@ -30,5 +32,13 @@ class Operation < ActiveRecord::Base
     end
   end
 
-  
+
+    def squish_columns
+      Operation.columns_hash.each do |key, value|
+        if value.type == :string || value.type == :text         
+          self[key] = self[key].try(:squish)
+        end
+      end
+    end
+
 end
