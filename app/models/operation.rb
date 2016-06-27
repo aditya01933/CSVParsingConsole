@@ -35,14 +35,11 @@ class Operation < ActiveRecord::Base
   end
 
 
-    def squish_columns
-      Operation.columns_hash.each do |key, value|
-        if value.type == :string || value.type == :text         
-          self[key] = self[key].try(:squish)
-        end
+  def squish_columns
+    Operation.columns_hash.each do |key, value|
+      if value.type == :string || value.type == :text         
+        self[key] = self[key].try(:squish)
       end
     end
-
-    
-
+  end
 end
