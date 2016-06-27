@@ -12,6 +12,8 @@ class Operation < ActiveRecord::Base
 
   before_save :squish_columns
 
+  after_save :create_category
+
   def create_category
 		category_array = self.kind.downcase.split(";")
     category_array.each do |name|

@@ -48,5 +48,22 @@ RSpec.describe Operation, type: :model do
     operation.save!
     expect(operation.company).to be_valid
   end
+
+  context "when missing category" do
+    it "should create new category" do
+      prev_count = Category.count
+      subject.save!
+      expect(Category.count).to eq(prev_count+2)
+    end
+  end
+
+  context "when category exists" do 
+    it "should not create new category" do       
+      subject.save!
+      prev_count = Category.count
+      FactoryGirl.create(:operation,invoice_num: "inm", kind: "anything1;anything3")
+      expect(Category.count).to eq(prev_count+1)
+    end
+  end
       
 end
