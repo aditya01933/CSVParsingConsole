@@ -36,8 +36,8 @@ class FileUpload
 	def create_operation_for(row)
 		operation = Operation.new	
 		operation_attr = row.except("company", "invoice_date", "operation_date", nil)
-		operation.attributes = format_date(row["invoice_date"], row["operation_date"])
 		operation.attributes = operation_attr
+		operation.attributes = format_date(row["invoice_date"], row["operation_date"])
 		company = companies_list.where(name: row["company"].try(:squish)).first		 
 		if company.nil?
 		  operation

@@ -1,10 +1,8 @@
 require 'rails_helper'
-
+  
 RSpec.describe Operation, type: :model do
   subject {
-      described_class.new(invoice_num: "Anynumber", invoice_date: DateTime.now,
-                        amount: 25, operation_date: DateTime.now, kind: "anything1;anything2",
-                        status: "anystatus")
+      FactoryGirl.build(:operation)
     }
 
   it "is valid with valid attributes" do
@@ -43,6 +41,12 @@ RSpec.describe Operation, type: :model do
 
   context "association" do
     it { is_expected.to have_many(:categories).through(:category_operations) }
+  end
+
+  it "should separate categories list from kind column" do
+    operation = subject
+    operation.save!
+    expect(operation.company).to be_valid
   end
       
 end
